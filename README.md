@@ -14,4 +14,4 @@ from http://jmcauley.ucsd.edu/data/amazon/links.html in the ”Per-category file
 
 `gunzip reviews_Patio_Lawn_and_Garden.json.gz`
 
-Note: Choose smaller datasets for local runs.xs
+Note: Choose smaller datasets for local runs

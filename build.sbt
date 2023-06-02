@@ -4,18 +4,15 @@ version := "0.1"
 
 scalaVersion := "2.12.12"
 
+lazy val root = (project in file("."))
+  .enablePlugins(SbtPlugin)
+
 // lazy val root = (project in file("."))
 //  .settings(
 //    name := "spark-product-insights",
 //    idePackagePrefix := Some("ds.insights")
 //  )
 
-lazy val root = (project in file("."))
-  .enablePlugins(SbtPlugin)
-
-// name := "BIDMT_F19_P3"
-// version := "0.1"
-//scalaVersion := "2.11.12"
 
 // cleanupCommands in console := "spark.stop()"
 // cleanupCommands :=  "spark.stop()"
@@ -24,7 +21,6 @@ lazy val root = (project in file("."))
 val sparkVersion = "3.4.0"
 
 // resolvers += Resolver.sonatypeRepo("releases")
-
 libraryDependencies += "org.apache.spark" %% "spark-core"  % sparkVersion  //% "provided"
 libraryDependencies += "org.apache.spark" %% "spark-sql"   % sparkVersion  //% "provided"
 libraryDependencies += "org.apache.spark" %% "spark-yarn"  % sparkVersion  //% "provided"

@@ -1,12 +1,12 @@
-package ds.productanalytics.application
-
-import java.io.{BufferedOutputStream, PrintWriter}
+package ds.insights
 
 import com.typesafe.config.ConfigFactory
 import org.apache.spark.ml.clustering.{KMeans, KMeansModel}
 import org.apache.spark.ml.evaluation.ClusteringEvaluator
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
+
+import java.io.{BufferedOutputStream, PrintWriter}
 
 
 object AmazonProductsAnalytics {
@@ -17,6 +17,7 @@ object AmazonProductsAnalytics {
     .getOrCreate()
 
   import spark.implicits._
+
   def jsonDataLoader(filePath: String): DataFrame = {
     spark
       .read
@@ -147,7 +148,7 @@ object AmazonProductsAnalytics {
    * Use when running on EMR cluster
    */
   def printKmeansCentersCluster(model: KMeansModel, categories: Array[String], outFilePath: String, spreadVal: Double): Unit = {
-    import org.apache.hadoop.fs.{FileSystem, Path}
+    import org.apache.hadoop.fs.{FileSystem,Path}
     //get the hdfs information from spark context
     val hdfs = FileSystem.get(spark.sparkContext.hadoopConfiguration)
     //create outFile in HDFS given the file name
@@ -166,7 +167,7 @@ object AmazonProductsAnalytics {
   }
 
   def evaluateModel(model: KMeansModel, dataset: DataFrame): Unit = {
-    import org.apache.hadoop.fs.{FileSystem, Path}
+    import org.apache.hadoop.fs.{FileSystem,Path}
     val hdfs = FileSystem.get(spark.sparkContext.hadoopConfiguration)
     //create outFile in HDFS given the file name
     val outFile = hdfs.create(new Path("out/scores.txt"))

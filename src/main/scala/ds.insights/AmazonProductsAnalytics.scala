@@ -1,13 +1,12 @@
 package ds.insights
 
-import com.typesafe.config.ConfigFactory
+import com.typesafe.config.{Config, ConfigFactory}
 import org.apache.spark.ml.clustering.{KMeans, KMeansModel}
 import org.apache.spark.ml.evaluation.ClusteringEvaluator
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 
 import java.io.{BufferedOutputStream, PrintWriter}
-
 
 object AmazonProductsAnalytics {
   val spark = SparkSession
@@ -209,7 +208,8 @@ object AmazonProductsAnalytics {
   }
 
   def main(args: Array[String]): Unit = {
-    val config = ConfigFactory.load()
+    //ConfigFactory.invalidateCaches()
+    val config: Config = ConfigFactory.load("application.conf") // ConfigFactory.parseFile(new File("application.conf"))//
     val persist = if (args.length > 0) if (args(0).toInt == 1) true else false else false
     println("Persist = " + persist)
 
